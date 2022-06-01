@@ -1,0 +1,108 @@
+name: BraTS_part
+experiment:
+  name: Nature_MI-revision(supervision_LR)
+  task: test
+  models:
+    client_X_: 'BRATS/best_model.pt'
+logging: 1
+device: gpu
+model:
+  module_name:  monai.networks.nets.unet_v1
+  class_name: UNetV1
+  params:
+    in_channels: 1
+    out_channels: 1
+#model:
+#  module_name: monai.networks.nets.convolutional_autoencoder
+#  class_name: ConvAutoEncoder
+#  params:
+#    intermediate_res: !!python/tuple [16,16]
+#    filters_start: 64
+#    filters_max: 128
+#    use_batchnorm: True
+#model:
+#  module_name: monai.networks.nets.unet
+#  class_name: UNet
+#  params:
+#    dimensions: 2
+#    in_channels: 1
+#    out_channels: 1
+#    channels:
+#      - 64
+#      - 128
+#      - 128
+#    strides:
+#      - 2
+#      - 2
+#      - 2
+#    kernel_size: 5
+#    act: 'relu'
+#    norm: 'batch'
+#    dropout: 0.2
+#    num_res_units: 1
+collaborator:
+  module_name: monai.ILIA.projects.feddis.Supervised_FedCollaborator
+  class_name: Supervised_FedDisCollaborator
+  client_num_in_total: 1
+  names:
+    - BRATS
+  params:
+    nr_epochs: 5
+    max_iterations: 10000000 # FedVC
+    checkpoint_path: '../masking/'
+    data_loader:
+      module_name: monai.ILIA.data.BrainMR.anomaly_detection
+      class_name: NatureAnomalyDataLoader
+      params:
+        target_size: !!python/tuple  [128, 128]
+        slice_range: !!python/tuple [15, 125] # 15 - 125
+        batch_size: 4
+    optimizer_params:
+      decay_rate: 0.97
+      learning_rate: 0.01
+aggregator:
+  module_name: monai.ILIA.models.FedDis.FedAggregator
+  class_name: FedDisAggregator
+  params:
+    nr_rounds: 50
+    client_num_in_total: 1
+    client_num_per_round: 1
+    test_frequency: 3
+    checkpoint_path: '../masking/'
+test_data:
+  data_loader_healthy:
+    dataset_names:
+      - KRI
+    module_name: monai.ILIA.data.BrainMR.anomaly_detection
+    class_name: NatureHealthyDataLoader
+    params:
+      target_size: !!python/tuple [128, 128]
+      slice_range: !!python/tuple [15, 125]
+      batch_size: 1
+  data_loader_anomaly:
+    dataset_names:
+      - MSLUB
+      - MSISBI
+      - MSKRI
+      - WMH
+      - GBKRI
+      - BRATS
+    module_name: monai.ILIA.data.BrainMR.anomaly_detection
+    class_name: NatureAnomalyDataLoader
+    params:
+      target_size: !!python/tuple  [128, 128]
+      slice_range: !!python/tuple [15, 125]
+      batch_size: 1
+downstream_tasks:
+  module_name: monai.ILIA.projects.feddis.FedDownstreamTask
+  class_name: Supervised_FedDisDownstreamTask
+  params:
+    checkpoint_path: *checkpoint_path
+analytics:
+  module_name: monai.ILIA.projects.feddis.FedAnalytics
+  class_name: FedDisAnalytics
+  params:
+vizu:
+  module_name:  monai.ILIA.projects.feddis.FedVizu
+  class_name: FedDisVizu
+  params:

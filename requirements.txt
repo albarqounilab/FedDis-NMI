@@ -1,0 +1,10 @@
+scikit_image==0.17.2
+matplotlib==3.3.2
+numpy==1.19.2
+wandb==0.10.30
+monai==0.6.0
+plotly==5.1.0
+PyYAML==5.4.1
+scikit_learn==0.24.2
+skimage==0.0
+torch==1.9.0
