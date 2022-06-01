@@ -1,4 +1,5 @@
-[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) [![DOI](https://zenodo.org/badge/498852910.svg)](https://zenodo.org/badge/latestdoi/498852910)
+
 
 # FedDis: Disentangled Federated Learning for Unsupervised Brain Pathology Segmentation
 ![FedDis overview](./Fig_1.png)
