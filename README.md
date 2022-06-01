@@ -215,4 +215,4 @@ the saved model parameters.
 The code has been cleaned up and polished for clarity and reproducibility. While the code has been thoroughly reviewed, it may contain bugs or errors. Please contact shadi.albarqouni@ukbonn.de if you encounter any problem in this repository.
 
 ## License
-This project is licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). See LICENSE for more details
+This project is licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). See [LICENSE](https://github.com/albarqounilab/FedDis-NMI/blob/main/LICENSE.md) for more details
