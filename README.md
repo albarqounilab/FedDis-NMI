@@ -2,6 +2,8 @@
 
 
 # FedDis: Disentangled Federated Learning for Unsupervised Brain Pathology Segmentation
+### Cosmin I Bercea, Benedikt Wiestler, Daniel Rueckert, and [Shadi Albarqouni](https://albarqouni.github.io/)
+
 ![FedDis overview](./Fig_1.png)
 This repository contains the code for our paper on [FedDis: Federated Disentangled Representation Learning for Unsupervised Brain Anomaly Detection](https://assets.researchsquare.com/files/rs-722389/v1_covered.pdf?c=1631875543). 
 If you use any of our code, please cite:
